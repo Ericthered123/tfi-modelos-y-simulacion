@@ -2,4 +2,8 @@ title: "TFI - Modelos y Simulación"
 description: "Simulación de eventos discretos del pipeline de revisión de Pull Requests en GitHub. Eric Doyle, Ingeniería en Informática (UNNOBA)."
 remote_theme: just-the-docs/just-the-docs
 search_enabled: true
-color_scheme: dark   # descomentá esta línea si querés modo oscuro
+aux_links:
+  "Ver en GitHub":
+    - "https://github.com/Ericthered123/tfi-modelos-y-simulacion"
+aux_links_new_tab: true
+color_scheme: dark   # descomentá esta línea si  modo oscuro

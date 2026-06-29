@@ -33,7 +33,7 @@ El trabajo modela ese pipeline como un **sistema de colas (M/M/c)** mediante **s
 
 ---
 
-## Mapa de cumplimiento de la consigna
+## Mapa de progreso según los requisitos definidos en la consigna
 
 La siguiente tabla relaciona cada requisito de la consigna oficial con la sección del portafolio que lo aborda y su estado.
 
