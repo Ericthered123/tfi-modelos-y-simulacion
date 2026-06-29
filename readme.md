@@ -1,24 +1,25 @@
-# Portafolio Digital: Trabajo Final Integrador (TFI)
+# TFI - Modelos y Simulación
 
-* **Asignatura:** Modelos y Simulación  
-* **Carrera:** Ingeniería en Informática (UNNOBA)  
-* **Estudiante:** Eric Doyle  
+Portafolio digital del Trabajo Final Integrador de la materia **Modelos y Simulación** (Ingeniería en Informática, UNNOBA), de **Eric Doyle**.
 
----
+El proyecto modela el pipeline de revisión de Pull Requests en proyectos de código abierto como un sistema de colas, y lo simula con eventos discretos para estudiar su saturación frente al aumento de contribuciones generadas por IA.
 
-##  Presentación del Proyecto
-Este portafolio digital registra de forma transparente y cronológica el proceso de investigación, modelado y simulación estocástica desarrollado para el TFI de la materia. 
+## Sitio publicado
 
-El proyecto aborda la saturación estocástica del pipeline de revisión de Pull Requests (PRs) en el desarrollo de software de código abierto, motivado por el auge de código generado automáticamente mediante herramientas de Inteligencia Artificial.
+El portafolio se publica con GitHub Pages. Punto de entrada: `index.md`.
 
----
+## Estructura del repositorio
 
-##  Índice de Navegación por Secciones
-De acuerdo con las etapas de la consigna oficial, el portafolio está organizado de manera clara y navegable en las siguientes secciones:
+| Archivo | Contenido |
+| :---- | :---- |
+| `index.md` | Inicio: datos, presentación y mapa de cumplimiento de la consigna |
+| `etapa1_problema.md` | Definición del problema, objetivos, pregunta y justificación documentada |
+| `etapa2_3_datos.md` | Recolección, exploración preliminar y limpieza de datos |
+| `etapa4_modelo.md` | Diseño del modelo de colas y plan de simulación |
+| `etapa5_documentacion.md` | Documentación del proceso y conclusiones |
+| `bitacora_ia.md` | Bitácora de uso crítico de IA y herramientas |
+| `_config.yml` | Configuración del sitio Jekyll |
 
-*  **[Etapa 1: Definición del Problema y Objetivos](etapa1_problema.md)** * 📊 **Etapa 2 y 3: Recolección y Limpieza de Datos** *(Próximamente)* * ⚙️ **Etapa 4: Implementación del Modelo en SimPy** *(Próximamente)* * 📝 **Etapa 5: Análisis de Escenarios y Conclusiones** *(Próximamente)* ---
+## Estado
 
-##  Transparencia Ética: Bitácora de Uso de IA
-En cumplimiento con las pautas de la cátedra sobre el uso reflexivo de tecnologías generativas, se mantiene un registro abierto de la interacción con asistentes virtuales.
-
-*  **[Bitácora de Co-Diseño de Modelos con IA](bitacora_ia.md)**
+Fase de diseño y planificación. La Etapa 1 está completa; las Etapas 2 a 5 están definidas a nivel de metodología, con resultados pendientes de la fase de ejecución.
