@@ -1,3 +1,8 @@
+---
+title: Etapa 4 - Modelo
+nav_order: 4
+---
+
 # Etapa 4: Formulación del modelo e implementación de la simulación
 
 > Esta sección describe el diseño del modelo y el plan de simulación. La implementación, los gráficos y los resultados se incorporarán durante la fase de ejecución.

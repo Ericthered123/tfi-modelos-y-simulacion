@@ -1,3 +1,8 @@
+---
+title: Bitácora de IA
+nav_order: 6
+---
+
 # Bitácora de uso crítico de Inteligencia Artificial y herramientas
 
 Este registro documenta, de forma transparente, qué herramientas se utilizaron en cada etapa del trabajo, con qué propósito, y con qué resultado, en cumplimiento de las pautas de la cátedra sobre el uso reflexivo de tecnologías. El uso de estas herramientas complementa, no reemplaza, el trabajo intelectual del estudiante: las decisiones de fondo fueron tomadas y validadas por el autor.

@@ -1,3 +1,8 @@
+---
+title: Etapa 5 - Documentación
+nav_order: 5
+---
+
 # Etapa 5: Documentación del proceso y conclusiones
 
 > Esta sección consolida el registro del proceso y la reflexión final. Se completará a medida que avance la ejecución del trabajo.

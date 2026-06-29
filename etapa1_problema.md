@@ -1,3 +1,8 @@
+---
+title: Etapa 1 - Problema
+nav_order: 2
+---
+
 # Etapa 1: Definición del problema
 
 ## 1. El fenómeno a estudiar

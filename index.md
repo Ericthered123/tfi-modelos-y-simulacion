@@ -1,3 +1,8 @@
+---
+title: Inicio
+nav_order: 1
+---
+
 # Portafolio Digital: Trabajo Final Integrador (TFI)
 
 * **Asignatura:** Modelos y Simulación

@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # TFI - Modelos y Simulación
 
 Portafolio digital del Trabajo Final Integrador de la materia **Modelos y Simulación** (Ingeniería en Informática, UNNOBA), de **Eric Doyle**.

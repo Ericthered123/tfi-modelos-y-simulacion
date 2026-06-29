@@ -1,3 +1,8 @@
+---
+title: Etapas 2 y 3 - Datos
+nav_order: 3
+---
+
 # Etapas 2 y 3: Recolección, estructuración y limpieza de datos
 
 > Esta sección presenta la metodología de obtención y preparación de datos, junto con la exploración preliminar ya realizada. Las tablas finales y las capturas del entorno de trabajo se incorporarán durante la fase de ejecución.
