@@ -11,3 +11,4 @@ pandas==3.0.3         # estructuración y limpieza de datos
 numpy==2.5.0          # cálculo numérico
 scipy==1.18.0         # ajuste de distribuciones y estadística
 matplotlib==3.11.0    # visualización
+python-dotenv==1.2.2  # carga del GITHUB_TOKEN desde .env

@@ -1,0 +1,4 @@
+# Dependencias de desarrollo (no necesarias para ejecutar, sí para testear).
+#   pip install -r requirements-dev.txt
+-r requirements.txt
+pytest==8.4.2

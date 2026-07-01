@@ -5,6 +5,7 @@ referencia/
 # === Credenciales y secretos (NUNCA versionar) ===
 .env
 .env.*
+!.env.example
 *.token
 *.pem
 *.key
@@ -41,3 +42,9 @@ Gemfile.lock
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# === Datos ===
+# Bronze (JSON crudo de la API): se re-genera desde la API, no se versiona por tamaño.
+data/raw/
+# CSV de smoke test de un solo mes (subconjunto del año completo).
+data/clean/prs_????_??.csv
