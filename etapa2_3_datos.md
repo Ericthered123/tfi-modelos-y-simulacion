@@ -13,10 +13,10 @@ La fuente principal es un **repositorio digital abierto**: el repositorio `panda
 
 Se evalúan dos vías de extracción, ambas válidas según la consigna:
 
-1. **API REST de GitHub mediante un script en Python** (vía preferida). Permite obtener, por PR, los campos `created_at`, `merged_at`, `closed_at`, el autor y su tipo (humano o bot), y la cantidad de comentarios de revisión. La autenticación se realiza con un token personal del estudiante, en su propio entorno.
+1. **API GraphQL de GitHub mediante un script en Python** (vía elegida). Permite obtener, por PR y en una sola consulta paginada, los campos `created_at`, `merged_at`, `closed_at`, el autor y su tipo de cuenta, y —de forma *inline*— la cuenta que realizó el merge (`mergedBy`). Se optó por GraphQL antes que por REST precisamente por esto último: REST no expone `mergedBy` en el listado de PRs y exigiría una llamada de detalle por cada PR (miles de peticiones), mientras que GraphQL lo devuelve junto al resto con 100 PRs por página. La autenticación se realiza con un token personal del estudiante, en su propio entorno.
 2. **GH Archive consultado mediante BigQuery** (alternativa). Un conjunto de datos público que registra todos los eventos públicos de GitHub, útil para reconstruir tasas de llegada agregadas a lo largo del tiempo.
 
-Como fuente complementaria de contexto (tendencias de búsqueda), se prevé usar **Google Trends** para evidenciar el crecimiento del interés en herramientas de generación de código por IA (por ejemplo, "Copilot", "Cursor", "AI coding agent").
+Como **fuente complementaria de contexto** se utiliza **Google Trends** para evidenciar el crecimiento del interés en herramientas de generación de código por IA (por ejemplo, "Copilot", "Cursor", "AI coding agent"). Este dato respalda la **premisa** del trabajo —que la generación de contribuciones asistida por IA creció y se popularizó en el período—; **no es una entrada del modelo** ni se mide sobre `pandas`. Su rol es sostener la relevancia y actualidad del escenario de estrés analizado (ver [Etapa 1](etapa1_problema.md)).
 
 ## 2.2. Variables a recolectar
 
@@ -25,8 +25,10 @@ Como fuente complementaria de contexto (tendencias de búsqueda), se prevé usar
 | `created_at` | Marca de llegada del PR a la cola |
 | `merged_at` / `closed_at` | Marca de salida (atendido o abandonado) |
 | Tiempo total en sistema (derivado) | Distribución objetivo para la calibración |
-| Autor y tipo de autor | Distinción entre contribuciones humanas y automáticas |
+| Autor y tipo de cuenta | Caracterización del origen de los PRs: identifica cuentas registradas como bot (`user.type`), como contexto descriptivo del dataset |
 | Revisores que mergean | Estimación del número de revisores activos (parámetro c) |
+
+> **Nota sobre el tipo de cuenta.** La API solo permite identificar cuentas registradas como *bot*; **no** permite distinguir el código asistido por IA que ingresa a través de cuentas humanas. Por eso este campo se usa como contexto descriptivo del origen de los PRs, no como variable del modelo, en coherencia con el encuadre de la [Etapa 1](etapa1_problema.md), donde el aumento atribuible a la IA se trata como escenario de estrés y no como una magnitud medida.
 
 ## 2.3. Exploración preliminar (datos reales ya obtenidos)
 
@@ -43,6 +45,13 @@ Antes de fijar la metodología, se realizó una exploración del volumen histór
 | 2025 | 1977 |
 
 **Interpretación.** El volumen de PRs en `pandas` no muestra el aumento sostenido en la era de la IA que cabría suponer; al contrario, es estable y luego decreciente, con su máximo en 2020. Este hallazgo es metodológicamente importante: confirma que la hipótesis de un aumento de llegadas atribuible a la IA no puede validarse empíricamente en este repositorio maduro, y justifica el encuadre adoptado, modelar el crecimiento de llegadas como un **escenario de estrés** sobre un modelo calibrado, y no como un contraste histórico medido. El año 2020, como período real de alta carga, queda disponible como caso de validación adicional del comportamiento del modelo.
+
+## 2.4. Ventana temporal de calibración y validación
+
+De la exploración anterior se desprende una decisión metodológica: qué período usar para calibrar el modelo. Se adoptan dos ventanas, ambas definidas por la fecha de creación (`created_at`) del PR:
+
+* **Base de calibración: PRs creados durante 2024.** Es el período reciente más adecuado por dos motivos. Primero, representa el régimen actual de bajo volumen del repositorio, coherente con el encuadre de escenario de estrés. Segundo, y decisivo: a la fecha de análisis los PRs de 2024 tuvieron más de un año para resolverse, de modo que la **censura por la derecha** —PRs todavía abiertos, sin fecha de cierre— es prácticamente nula. Esto importa porque la limpieza descarta los PRs sin cierre (paso 2 de §3.1): una ventana demasiado reciente sesgaría la distribución del tiempo en sistema hacia los PRs que cierran rápido, subestimando el tiempo de servicio al calibrar. Con 2024 ese sesgo es despreciable.
+* **Validación: PRs creados durante 2020.** El año de máxima carga histórica (5333 PRs), reservado como caso independiente para comprobar que el modelo calibrado reproduce también un régimen de alta demanda, y no solo el punto en el que se lo calibró.
 
 ## 3.1. Estructuración y limpieza
 
