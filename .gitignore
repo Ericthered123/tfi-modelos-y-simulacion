@@ -1,0 +1,43 @@
+# === Material confidencial de la cátedra (NUNCA versionar) ===
+reference/
+referencia/
+
+# === Credenciales y secretos (NUNCA versionar) ===
+.env
+.env.*
+*.token
+*.pem
+*.key
+secrets.*
+
+# === Entorno virtual / dependencias ===
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# === Jupyter ===
+.ipynb_checkpoints/
+
+# === Sitio Jekyll generado ===
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+Gemfile.lock
+
+# === Editor / IDE ===
+.vscode/
+.idea/
+*.swp
+
+# === Sistema operativo ===
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -27,3 +27,10 @@ El portafolio se publica con GitHub Pages. Punto de entrada: `index.md`.
 ## Estado
 
 Fase de diseño y planificación. La Etapa 1 está completa; las Etapas 2 a 5 están definidas a nivel de metodología, con resultados pendientes de la fase de ejecución.
+
+## Licencias
+
+Este repositorio usa una licencia distinta según el tipo de material:
+
+- **Código** (por ejemplo `src/`): licencia **MIT** — ver [`LICENSE.md`](LICENSE.md).
+- **Contenido del portafolio** (los `.md` de texto y los gráficos de `charts/`): licencia **Creative Commons Atribución 4.0 (CC BY 4.0)** — ver [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md).
