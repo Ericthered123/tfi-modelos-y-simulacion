@@ -80,6 +80,24 @@ Este registro documenta, de forma transparente, qué herramientas se utilizaron 
 
 * **Reflexión crítica:** el asistente aceleró el diseño y la escritura del código, pero las decisiones de modelado no se delegaron: se discutieron y validaron una por una, y en un caso (Google Trends) el autor repreguntó y la recomendación se revirtió tras reconsiderarla. El código generado se revisó y se cubrió con tests; los resultados de la extracción se contrastaron contra datos ya conocidos (la tabla de exploración) antes de darlos por válidos. Se sostuvo la regla de que los resultados ajustan el texto, y no al revés.
 
+
+### Fase de implementación de la capa gold (julio de 2026) - Claude Code
+
+* **Objetivo:** ejecutar la primera parte de la Etapa 4 (agregados de calibración): destilar el CSV *silver* en los parámetros que alimentan el modelo M/M/c —tasa de llegadas λ, fracción de abandono, número de revisores activos `c` y la distribución objetivo del tiempo en sistema— construyendo la capa *gold* de la arquitectura medallón, sin todavía ajustar distribuciones ni simular.
+
+**Prompts utilizados (sesión de trabajo asistido con Claude Code, parafraseados):**
+
+> **1. Acotar el alcance de la capa gold antes de programar.** "Continuemos con el TFI construyendo ahora la capa *gold* del pipeline de datos —la de los agregados de calibración— sobre los CSV *silver* ya extraídos. Antes de escribir código, definamos con precisión qué debe producir esta capa y respetemos el mismo enfoque que veníamos usando: funciones puras con TDD, decisiones de modelado explícitas y en mis manos, y sin resolver el trabajo de forma autónoma." — Sobre esa base se fijó, mediante preguntas explícitas, el alcance de la capa: computar y persistir los parámetros de calibración (λ, fracción de abandono, estimación de `c`, y la serie del tiempo en sistema de los mergeados como distribución objetivo) más tablas y gráficos descriptivos, dejando el ajuste estadístico de distribuciones y la simulación para más adelante; cubrir solo el año 2024 (ventana de calibración) y reservar 2020 (validación) para una iteración posterior; y generar gráficos básicos de inspección. Se replicó el patrón ya usado en la extracción: funciones puras testeadas (TDD) separadas del orquestador que hace I/O y gráficos.
+
+> **2. Decisión del umbral de revisores activos (`c`).** [surgió durante la implementación, no como prompt inicial] — Al correr la agregación, el criterio automático por defecto (retener las cuentas con merges por encima del promedio) resultó degenerado: como una sola cuenta (`mroeschke`) concentra el 76,6% de los merges de 2024, el promedio se dispara y da `c=1`, que no representa la capacidad de revisión real. El asistente lo señaló en lugar de dejar pasar el default, y presentó la distribución completa de merges por cuenta (13 cuentas) con varios cortes posibles. El autor eligió el umbral de ≥10 merges → **`c=8`**, apoyado en una discontinuidad real de los datos (8 cuentas "core" con ≥22 merges frente a una cola esporádica de ≤7 merges); ese corte quedó fijado y documentado en el código como decisión de modelado ajustable.
+
+* **Aporte y proceso:**
+  1. Se implementó con TDD un módulo de cálculo puro (`src/gold.py`) —λ, fracción de abandono, merges por cuenta, revisores activos según umbral y distribución del tiempo en sistema de los mergeados— y un orquestador CLI (`src/aggregate_gold.py`) que persiste la capa *gold* (`data/gold/`) y tres gráficos descriptivos (`charts/`). Siete tests nuevos; diecisiete en verde en total.
+  2. Los agregados se contrastaron contra lo ya conocido del dataset: 2547 llegadas (coincide con el *silver*), λ ≈ 6,96 PRs/día, fracción de abandono 0,218, y una distribución del tiempo en sistema fuertemente asimétrica a derecha (mediana 0,71 d, media 6,68 d, cola hasta 766 d), coherente con las candidatas lognormal/gamma y no con una normal.
+  3. Se detectó un hueco preexistente de configuración: el `_config.yml` de Jekyll no excluía los directorios de código y datos; se agregó `exclude` para `.venv`, `src`, `data`, `tests` y `reference`, dejando `charts/` publicable.
+
+* **Reflexión crítica:** el aporte más valioso de la sesión no fue el código sino frenar un valor automático incorrecto: el umbral por defecto para `c` habría fijado en silencio `c=1`. Al exponer la distribución real y sus alternativas, la decisión de modelado quedó en manos del autor y anclada en una característica genuina de los datos, no en una regla estadística ciega. Se mantuvo la separación entre lógica pura e I/O, la cobertura con tests, y la regla de que los datos ajustan el texto y no al revés.
+
 ---
 
 ## Material pendiente de incorporar

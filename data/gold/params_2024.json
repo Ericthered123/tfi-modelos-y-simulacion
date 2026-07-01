@@ -1,0 +1,29 @@
+{
+  "window_days": 366,
+  "n_arrivals": 2547,
+  "n_merged": 1991,
+  "n_abandoned": 556,
+  "arrival_rate_per_day": 6.959016393442623,
+  "abandonment_probability": 0.21829603455045152,
+  "threshold": 10.0,
+  "active_reviewers_c": 8,
+  "active_reviewer_accounts": [
+    "mroeschke",
+    "jorisvandenbossche",
+    "phofl",
+    "rhshadrach",
+    "lithomas1",
+    "WillAyd",
+    "MarcoGorelli",
+    "datapythonista"
+  ],
+  "time_in_system": {
+    "mean": 6.67649296835761,
+    "median": 0.7115856481481482,
+    "p25": 0.13865740740740734,
+    "p75": 2.849878472222222,
+    "std": 32.083669022731016,
+    "min": 0.0010879629629629,
+    "max": 766.3072916666666
+  }
+}

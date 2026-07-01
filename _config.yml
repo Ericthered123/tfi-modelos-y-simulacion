@@ -7,3 +7,7 @@ aux_links:
     - "https://github.com/Ericthered123/tfi-modelos-y-simulacion"
 aux_links_new_tab: true
 color_scheme: dark   # descomentá esta línea si  modo oscuro
+
+# Directorios de código y datos: no se procesan como contenido del sitio.
+# charts/ NO se excluye: sus gráficos se referencian desde el portafolio.
+exclude: [".venv", "src", "data", "tests", "reference"]
